@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+        <div class="text-center">
+            <h1 class="display-4">Главная</h1>
+            <div class="container mt-5">
+                <div class="row" style="height:200px; line-height: 200px;">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="col-sm btn btn-secondary btn-lg m-2" asp-controller="Workers" asp-action="Index">Работники</a>
+                    }
+                    <a class="col-sm btn btn-secondary btn-lg m-2" asp-controller="Rooms" asp-action="Index">Рабочее место</a>
+                </div>
+                <div class="row" style="height:200px; line-height: 200px;">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="col-sm btn btn-secondary btn-lg m-2" asp-controller="RoomConnections" asp-action="Index">Координаторы</a>
+                        <a class="col-sm btn btn-secondary btn-lg m-2" asp-controller="RoomConnections" asp-action="Index">Менеджеры</a>
+                    }
+                </div>
+            </div>
+        </div>
+}
